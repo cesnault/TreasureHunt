@@ -53,9 +53,9 @@ export default class MapElement{
 
     placeOnMap(map,index, bCheckAll){
         if(this.isOffLimit(this.#posX, map.length, this.#posY, map[0].length))
-            return [false, ""]
+            return [false, "This element is off limit"]
         if(!this.canMove(map[this.#posX][this.#posY], index, bCheckAll))
-            return [false, ""]
+            return [false, "Cannot place this element, there is already another one here"]
         map[this.#posX][this.#posY][index] = this;
         return [true, ""]
     }

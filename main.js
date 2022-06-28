@@ -6,7 +6,8 @@ const outputFile = "outputFile.txt"
 
 function showResult(system, bshouldDraw){
     
-    system.simulate();
+    if(!system.simulate())
+        process.exit(-2);
     
     if(!bshouldDraw)
         system.outputMap(outputFile)
@@ -19,7 +20,7 @@ var output = { bshouldDraw : false};
 const argv = process.argv.slice(2);
 
 if(!checkArgv(argv, file, output) || !checkExtension(file.name))
-    process.exit(1);
+    process.exit(-1);
 
 const system = new HuntSystem();
 

@@ -125,11 +125,14 @@ export default class HuntSystem{
     }
     #placeElements(mapElementList,index, bCheckAll){
         var i = 0;
+        var status;
 
         while(i < mapElementList.length){
-            
-            if(!mapElementList[i].placeOnMap(this.#map, index, bCheckAll))
+            var status = mapElementList[i].placeOnMap(this.#map, index, bCheckAll);
+            if(!status[0]){
+                console.info(status[1])
                 return false;
+            }
             i++;
         }
         return true;
@@ -197,7 +200,6 @@ export default class HuntSystem{
      */
     simulate(){
         var i = 0;
-
         if(!this.#placeElements(this.#mountainList, 1, true))
             return false;
         if(!this.#placeElements(this.#treasureList, 0, true))
